@@ -1,0 +1,2 @@
+name,slug,isin,sector,drhp_status,lot_size,indicative_price,featured,logo_url,overview,financials,shareholding
+Example Pharma Ltd,example-pharma,INE000X01010,Healthcare,filed,100,410.00,false,,"Placeholder overview text.","[{""label"":""Revenue (FY25)"",""value"":""₹900 Cr""},{""label"":""PAT (FY25)"",""value"":""₹75 Cr""}]","[{""category"":""Promoters"",""percent"":60},{""category"":""Institutional"",""percent"":30},{""category"":""Others"",""percent"":10}]"
