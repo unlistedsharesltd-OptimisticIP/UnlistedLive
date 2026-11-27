@@ -21,7 +21,7 @@
    | Key | Value |
    |---|---|
    | `NEXT_PUBLIC_SITE_URL` | `https://<your-site>.netlify.app` (or your custom domain) |
-   | `NEXT_PUBLIC_SUPABASE_URL` | Supabase Project URL |
+   | `NEXT_PUBLIC_SUPABASE_URL` | Optional override; use the Supabase Project URL, without `/rest/v1/` |
    | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon / publishable key |
    | `RESEND_API_KEY` | see section 3 |
    | `RESEND_FROM_EMAIL` | see section 3 |
@@ -29,6 +29,8 @@
    | `NEXT_PUBLIC_WHATSAPP_NUMBER` | e.g. `919876543210` (digits only, with country code) |
    | `NEXT_PUBLIC_WHATSAPP_MESSAGE` | optional pre-filled message |
    | `NEXT_PUBLIC_GA_ID` | see section 4 |
+
+   Use the publishable or legacy anon key for the configured Supabase project, never a secret or service-role key. The app reads this key on the server without inlining it, so make it available to both Builds and Functions. If you use a different project, set both Supabase variables together.
 
    Leave `NEXT_PUBLIC_ENABLE_VERCEL_ANALYTICS` unset — Vercel Analytics only works on Vercel.
 4. **Deploy**. Every push to `main` redeploys automatically.

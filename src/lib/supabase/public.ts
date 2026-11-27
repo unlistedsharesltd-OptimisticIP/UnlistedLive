@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { getSupabaseKey, supabaseUrl } from "./config";
 
 /**
  * Cookie-less Supabase client using the anon key. Safe inside `'use cache'`
@@ -6,8 +7,7 @@ import { createClient } from "@supabase/supabase-js";
  * configured yet (e.g. a local build without .env.local).
  */
 export function getPublicClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return null;
-  return createClient(url, key, { auth: { persistSession: false } });
+  const key = getSupabaseKey();
+  if (!key) return null;
+  return createClient(supabaseUrl, key, { auth: { persistSession: false } });
 }
