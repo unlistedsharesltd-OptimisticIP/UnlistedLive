@@ -19,6 +19,10 @@ Next.js 16 (App Router, Cache Components) · TypeScript · Tailwind v4 · Supaba
    npm run dev
    ```
 
+## Deploy on Netlify
+
+See [docs/deploy-netlify.md](docs/deploy-netlify.md) for Netlify hosting, enquiry email (Resend) setup and visitor analytics.
+
 ## Deploy (GitHub + Vercel)
 
 Push to GitHub, import the repo in Vercel, add the env vars from `.env.example`, deploy. Set `NEXT_PUBLIC_SITE_URL` to the live domain **before** generating the exhibition QR code. For lead emails, verify your sending domain in Resend and use it in `RESEND_FROM_EMAIL`.
