@@ -2,26 +2,25 @@ import "server-only";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { getSupabaseKey, supabaseUrl } from "./config";
 
 /** Cookie-based client carrying the admin's session (RLS sees auth.uid()). */
 export async function getServerClient() {
+  const key = getSupabaseKey();
+  if (!key) throw new Error("Supabase publishable key is not configured.");
   const cookieStore = await cookies();
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll: () => cookieStore.getAll(),
-        setAll: (toSet) => {
-          try {
-            toSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
-          } catch {
-            // Called from a Server Component; proxy.ts refreshes the session instead.
-          }
-        },
+  return createServerClient(supabaseUrl, key, {
+    cookies: {
+      getAll: () => cookieStore.getAll(),
+      setAll: (toSet) => {
+        try {
+          toSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
+        } catch {
+          // Called from a Server Component; proxy.ts refreshes the session instead.
+        }
       },
     },
-  );
+  });
 }
 
 /** Returns the signed-in admin's client, or null if not signed in / not an admin. */
