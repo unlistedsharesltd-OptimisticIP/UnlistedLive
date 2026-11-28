@@ -22,7 +22,8 @@
    |---|---|
    | `NEXT_PUBLIC_SITE_URL` | `https://<your-site>.netlify.app` (or your custom domain) |
    | `NEXT_PUBLIC_SUPABASE_URL` | Supabase Project URL |
-   | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon / publishable key |
+   | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon / publishable key (never the `service_role` key) |
+   | `SECRETS_SCAN_OMIT_KEYS` | `NEXT_PUBLIC_SUPABASE_ANON_KEY` — only needed if the anon key is marked *Secret*; it is public by design, and without this Netlify's secret scanning can fail the build |
    | `RESEND_API_KEY` | see section 3 |
    | `RESEND_FROM_EMAIL` | see section 3 |
    | `ADMIN_NOTIFICATION_EMAIL` | inbox that should receive enquiries |
