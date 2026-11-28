@@ -136,6 +136,19 @@ create trigger shares_log_price after insert or update of indicative_price on pu
   for each row execute function public.log_share_price();
 
 -- ---------------------------------------------------------------------------
+-- Table privileges for the API roles. Newer Supabase projects do not grant
+-- these automatically; RLS policies below still decide which rows each role
+-- can actually see or change.
+-- ---------------------------------------------------------------------------
+grant usage on schema public to anon, authenticated;
+grant select on public.shares, public.share_price_history, public.articles to anon;
+grant insert on public.leads to anon;
+grant select, insert, update, delete on public.shares, public.share_price_history, public.articles to authenticated;
+grant select, insert, delete on public.leads to authenticated;
+grant select on public.admin_users to authenticated;
+grant execute on function public.is_admin() to anon, authenticated;
+
+-- ---------------------------------------------------------------------------
 -- Row Level Security
 -- ---------------------------------------------------------------------------
 alter table public.admin_users enable row level security;
